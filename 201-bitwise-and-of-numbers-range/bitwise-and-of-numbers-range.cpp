@@ -1,13 +1,12 @@
 class Solution {
 public:
     int rangeBitwiseAnd(int left, int right) {
-        if(__bit_width(left) == __bit_width(right)){
-            long ans = 2147483647;
-            for(long i=left;i<=right and i<2147483647;i++){
-                ans &=i;
-            }
-            return ans;
+        int_fast8_t count=0;
+        while(left != right){
+            count++;
+            left>>=1;
+            right>>=1;
         }
-        return 0;
+        return (left<<count);
     }
 };
