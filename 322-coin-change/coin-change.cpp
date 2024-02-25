@@ -1,25 +1,25 @@
 class Solution {
 public:
 
-    int count(int idx , int amt , vector<int>coins , vector<vector<int>> &dp){
-        if(idx==0){
-            if(amt%coins[idx]==0) return amt/coins[idx]; 
-            return 1e5;
+    int coinChange(vector<int>& arr, int x) {
+        int n=arr.size();
+        vector<int>prev(x+1 , 0);
+        for(int tgt =0;tgt<=x;tgt++){
+            if(tgt%arr[0]==0) prev[tgt] = tgt/arr[0];
+            else prev[tgt] = 1e9;
         }
-        if(dp[idx][amt]!= -1) return dp[idx][amt];
-        int not_pick = count(idx-1 , amt , coins ,dp);
-        int pick = 1e5;
-        if(coins[idx]<=amt){
-            pick = 1 + count(idx , amt-coins[idx] , coins ,dp);
+        for(int idx=1;idx<n;idx++){
+            vector<int>curr(x+1 , 0);
+            for(int target=0;target<=x;target++){
+                int not_pick= 0 + prev[target];
+                int pick = 1e9;
+                if(arr[idx]<=target) pick = 1 + curr[target-arr[idx]];
+                curr[target] = min(pick , not_pick);
+            }
+            prev = curr;
         }
-        return dp[idx][amt] = min(pick , not_pick);
-    }
-
-    int coinChange(vector<int>& coins, int amount) {
-        int n=coins.size();
-        vector<vector<int>>dp(n , vector<int>(amount+1 , -1));
-        int ans = count(n-1 , amount , coins ,dp);
-        if(ans>=1e5) return -1;
+        int ans=prev[x];
+        if(ans>=1e9) return -1;
         return ans;
     }
 };
