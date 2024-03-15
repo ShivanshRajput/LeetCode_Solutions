@@ -1,8 +1,6 @@
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
-        ios_base::sync_with_stdio(false);
-        cin.tie(NULL);
         int n = nums.size();
         vector<int>prefix(n,1);
         vector<int>suffix(n,1);
