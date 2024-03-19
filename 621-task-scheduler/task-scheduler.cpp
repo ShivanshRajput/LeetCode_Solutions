@@ -1,7 +1,8 @@
 class Solution {
 public:
     int leastInterval(vector<char>& tasks, int n) {
-
+        ios_base::sync_with_stdio(0);
+        cin.tie(NULL);
         int freq[26]={};
         for(char t:tasks){
             freq[t-'A']++;
