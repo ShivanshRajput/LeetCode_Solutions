@@ -8,6 +8,13 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
+int init = [] {
+    ios_base::sync_with_stdio(false);  cin.tie(nullptr);
+    ofstream out("user.out");
+    return 0;
+}();
+
 class Solution {
 public:
     void reorderList(ListNode* head) {
