@@ -12,6 +12,8 @@ public:
     }
 
     int lengthOfLIS(vector<int>& nums) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(nullptr);
         int n = nums.size();
         vector<vector<int>>dp(n,vector<int>(n+1 , -1));
         return len(n-1 , n , nums , n ,dp);
