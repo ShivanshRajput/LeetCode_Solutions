@@ -1,6 +1,7 @@
 class Solution {
 public:
     int findNumberOfLIS(vector<int>& nums) {
+        ios_base::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
         int n = nums.size();
         vector<int> dp(n,1) , count(n,1);
         int maxi = 0;
