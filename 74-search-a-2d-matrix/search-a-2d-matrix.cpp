@@ -2,6 +2,8 @@ class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
         // technique used: flattening of 2d array
+        ios_base::sync_with_stdio(false);
+        cin.tie(nullptr); cout.tie(nullptr);
         int n=matrix.size() , m=matrix[0].size();
         int low=0 , high=n*m-1;
         while(low<=high){
