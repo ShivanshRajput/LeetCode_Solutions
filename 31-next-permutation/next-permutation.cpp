@@ -1,6 +1,7 @@
 class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         int n = nums.size();
         int idx=-1;
         for(int i=n-1;i>=1;i--){
@@ -13,7 +14,7 @@ public:
             reverse(nums.begin() , nums.end());
             return ; 
         }
-        for(int i=n-1;i>=idx;i--){
+        for(int i=n-1;i>idx;i--){
             if(nums[i]>nums[idx]){
                 swap(nums[i] , nums[idx]);
                 break;
