@@ -19,6 +19,7 @@ public:
         return count;
     }
     int subarraysWithKDistinct(vector<int>& nums, int k) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         return subarraysUptoKDistinct(nums , k) - subarraysUptoKDistinct(nums , k-1);
     }
 };
