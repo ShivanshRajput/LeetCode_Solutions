@@ -6,8 +6,7 @@ public:
         int depth=0;
         for(char &c:s){
             if(c=='('){
-                depth++;
-                maxd = max(maxd,depth);
+                maxd = max(maxd,++depth);
             } 
             else if(c==')') depth--;
             else continue;
