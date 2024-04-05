@@ -1,5 +1,6 @@
 class Solution {
 public:
+    
     void merge(vector<int>& arr, int low, int mid, int high){
         int cnt=0;
         int i =low, j=mid+1;
@@ -49,6 +50,7 @@ public:
     }
 
     int reversePairs(vector<int>& nums) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         return mergeSort(nums , 0 , nums.size()-1);
     }
 };
