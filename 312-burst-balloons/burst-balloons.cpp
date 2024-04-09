@@ -1,6 +1,7 @@
 class Solution {
 public:
     int maxCoins(vector<int>& nums) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         nums.insert(nums.begin(),1);
         nums.push_back(1);
         int n = nums.size();
