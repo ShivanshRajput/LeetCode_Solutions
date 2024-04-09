@@ -6,8 +6,7 @@ public:
         int n = nums.size();
         vector<vector<int>> dp(n,vector<int>(n,0));
         for(int i=n-2;i>=1;i--){
-            for(int j=1;j<=n-2;j++){
-                if(i>j) continue;
+            for(int j=i;j<=n-2;j++){
                 int maxpoints = INT_MIN;
                 for(int k=i;k<=j;k++){ // we are following to burst from last .. watch strivers video
                     int points=nums[i-1]*nums[k]*nums[j+1] + dp[i][k-1] + dp[k+1][j];
