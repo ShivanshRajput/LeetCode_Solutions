@@ -12,6 +12,7 @@ public:
         return true;
     }
     int minCut(string s) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         int n = s.size();
         vector<int>dp(n+1 , 0);
         int j = n-1;
