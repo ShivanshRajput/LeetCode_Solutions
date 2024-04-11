@@ -11,23 +11,20 @@ public:
         }
         return true;
     }
-
-    int minpart(int i , int j , string &s , vector<int> &dp){
-        if(i>j) return 0;
-        if(dp[i]!= -1) return dp[i];
-        int mini = 1e7;
-        for(int k=i;k<=j;k++){
-            if(ispal(i,k,s)){
-                int curr = 1 + minpart(k+1, j,s , dp);
-                mini = min(mini , curr);
-            }
-        }
-        return dp[i] = mini;
-    }
-
     int minCut(string s) {
         int n = s.size();
-        vector<int>dp(n , -1);
-        return minpart(0 , n-1 , s , dp) - 1;
+        vector<int>dp(n+1 , 0);
+        int j = n-1;
+        for(int i=j;i>=0;i--){
+            int mini = 1e7;
+            for(int k=i;k<=j;k++){
+                if(ispal(i,k,s)){
+                    int curr = 1 + dp[k+1];
+                    mini = min(mini , curr);
+                }
+            }
+            dp[i] = mini;
+        }
+        return dp[0]-1;
     }
 };
