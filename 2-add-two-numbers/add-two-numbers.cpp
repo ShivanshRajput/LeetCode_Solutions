@@ -10,7 +10,12 @@
  */
 class Solution {
 public:
+    
+
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(nullptr);
+        
         ListNode * move1 = l1;
         ListNode * move2 = l2;
         int carry = 0;
