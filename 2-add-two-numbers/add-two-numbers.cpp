@@ -15,15 +15,12 @@ public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         ios_base::sync_with_stdio(false);
         cin.tie(nullptr);
-        
+
         ListNode * move1 = l1;
         ListNode * move2 = l2;
         int carry = 0;
-        ListNode * ansHead = new ListNode((l1->val + l2->val + carry)%10);
-        carry = (l1->val + l2->val + carry)/10;
-        ListNode * curr = ansHead;
-        move1=move1->next;
-        move2=move2->next;
+        ListNode * dummy = new ListNode();
+        ListNode * curr = dummy;
         while(move1!=nullptr and move2!=nullptr){
             ListNode * temp = new ListNode((move1->val + move2->val + carry)%10);
             carry = (move1->val + move2->val + carry)/10;
@@ -49,6 +46,8 @@ public:
         if(carry){
             curr->next = new ListNode(1);
         }
-        return ansHead;
+        ListNode * result = dummy->next;
+        delete(dummy);
+        return result;
     }
 };
