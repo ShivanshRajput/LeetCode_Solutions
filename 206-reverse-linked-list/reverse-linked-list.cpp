@@ -11,16 +11,15 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
-        ios_base::sync_with_stdio(0);
-        cin.tie(NULL);
-        ListNode *prev = NULL;
-        ListNode *curr = head;
-        while(curr != NULL){
-            ListNode *nexttemp = curr ->next;
-            curr -> next = prev ;
-            prev = curr;
-            curr = nexttemp;
+        if(head==nullptr or head->next==  nullptr) return head;
+        ListNode * slow = nullptr;
+        ListNode * fast = head;
+        while(fast != nullptr){
+            ListNode * temp = slow;
+            slow = fast;
+            fast = fast->next;
+            slow->next = temp;
         }
-        return prev;
+        return slow;
     }
 };
