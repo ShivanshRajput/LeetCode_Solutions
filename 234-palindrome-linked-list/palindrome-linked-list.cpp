@@ -8,36 +8,35 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-
-int init = [] {
-    ios_base::sync_with_stdio(false);  cin.tie(nullptr);
-    ofstream out("user.out");
-    for (string s; getline(cin, s);)
-        out<<(equal(s.begin()+1, s.begin()+s.size()/2, s.rbegin() + 1) ? "true\n" : "false\n");
-    out.flush();
-    exit(0);
-    
-    return 0;
-}();
-
 class Solution {
 public:
+    ListNode* reverseList(ListNode* head) {
+        if(head == nullptr or head->next==nullptr) return head;
+        ListNode * last = reverseList(head->next);
+        ListNode * ahead = head->next;
+        ahead->next = head;
+        head->next = nullptr;
+        return last;
+    }
     bool isPalindrome(ListNode* head) {
-        vector<int> ls;
-        while(head){
-            ls.push_back(head->val);
-            head = head->next;
+        ListNode* fast = head;
+        ListNode* slow = head;
+        while(fast->next != nullptr and fast->next->next != nullptr){
+            slow = slow->next;
+            fast = fast->next->next;
         }
-        int low = 0 , high = ls.size()-1 ; 
-        while(low<=high){
-            if(ls[low]==ls[high]){
-                low++;
-                high--;
-            }
-            else{
+        ListNode* newHead = reverseList(slow->next);
+        ListNode* first = head;
+        ListNode* second = newHead;
+        while(second!=nullptr){
+            if(first->val!=second->val){
+                reverseList(newHead);
                 return false;
             }
+            first=first->next;
+            second=second->next;
         }
+        reverseList(newHead);
         return true;
     }
 };
