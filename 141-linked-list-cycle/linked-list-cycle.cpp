@@ -8,14 +8,16 @@
  */
 class Solution {
 public:
-    bool hasCycle(ListNode *head) {
-        if(head==NULL) return false;
-        ListNode *slow = head;
-        ListNode *fast = head->next;
-        while(fast!=NULL and fast->next!=NULL){
-            if(slow == fast) return true;
-            fast = fast->next->next;
-            slow = slow->next;
+    bool hasCycle(ListNode *head) {\
+        if(head == nullptr or head->next == nullptr) return false;
+        unordered_set<ListNode*> st;
+        ListNode* move = head;
+        while(move != nullptr){
+            st.insert(move);
+            move = move->next;
+            if(st.find(move)!=st.end()){
+                return true;
+            }
         }
         return false;
     }
