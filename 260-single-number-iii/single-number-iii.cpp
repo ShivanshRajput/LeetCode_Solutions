@@ -1,6 +1,8 @@
 class Solution {
 public:
     vector<int> singleNumber(vector<int>& nums) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(nullptr);
         long xorsum = 0;
         for(int&i:nums){
             xorsum^=i;
