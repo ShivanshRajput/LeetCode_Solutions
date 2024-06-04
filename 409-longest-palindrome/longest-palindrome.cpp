@@ -1,20 +1,18 @@
 class Solution {
 public:
     int longestPalindrome(string s) {
-        unordered_map<char,int>freq;
-        for(char c: s){
-            freq[c]++;
+        unordered_set<char>st;
+        int len = 0;
+        for(char& c: s){
+            if(st.find(c)!=st.end()){
+                st.erase(c);
+                len+=2;
+            }
+            else{
+                st.insert(c);
+            }
         }
-        int midChar =0;
-        int sideChar =0;
-        for(char c = 'a';c<='z';c++){
-            if(freq[c]%2) midChar = 1;
-            sideChar+=freq[c]/2;
-        }
-        for(char c = 'A';c<='Z';c++){
-            if(freq[c]%2) midChar = 1;
-            sideChar+=freq[c]/2;
-        }
-        return 2*sideChar + midChar;
+        if(!st.empty()) len++;
+        return len;
     }
 };
