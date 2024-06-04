@@ -43,7 +43,7 @@ public:
                 prev->next = list1;
             }
         }
-        if(list2){
+        else{
             if(prev==nullptr){
                 head = list2;
             }
