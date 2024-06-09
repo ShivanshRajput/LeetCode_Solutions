@@ -22,7 +22,7 @@ public:
             move->next = pq.top().second;
             move = move->next;
             pq.pop();
-            if(move && move->next) pq.push({move->next->val , move->next});
+            if(move->next) pq.push({move->next->val , move->next});
         }
         return dummyHead->next;
     }
