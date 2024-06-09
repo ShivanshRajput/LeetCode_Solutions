@@ -11,7 +11,6 @@
 class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        if(lists.size() == 0) return nullptr;
         priority_queue<pair<int , ListNode*> , vector<pair<int , ListNode*>> , greater<pair<int , ListNode*>>> pq;
         for(int i=0;i<lists.size();i++){
             if(lists[i]) pq.push({lists[i]->val , lists[i]});
