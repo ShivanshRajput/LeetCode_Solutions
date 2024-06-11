@@ -1,14 +1,16 @@
 class Solution {
 public:
+
+    constexpr int ways(int n , vector<int> &dp){
+        if(n==0) return 1;
+        if(n==-1) return 0;
+        if(dp[n]!=-1) return dp[n];
+        int onestep = ways(n-1 , dp);
+        int twostep = ways(n-2 , dp);
+        return dp[n] = onestep + twostep;
+    }
     int climbStairs(int n) {
-        if(n==1) return 1;
-        int p2=0;
-        int p1=1;
-        for(int i=1;i<=n;i++){
-            int cur=p1+p2;
-            p2=p1;
-            p1=cur;
-        }
-        return p1;
+        vector<int> dp(n+1 , -1);
+        return ways(n ,dp);
     }
 };
