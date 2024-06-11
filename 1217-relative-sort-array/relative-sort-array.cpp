@@ -1,6 +1,8 @@
 class Solution {
 public:
     vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL); cout.tie(NULL);
         unordered_map<int,int> freq;
         for(int &i:arr1){
             freq[i]++;
@@ -12,6 +14,7 @@ public:
                 ans[index++] = i;
                 freq[i]--;
             }
+            freq.erase(i);
         }
         int j = index;
         for(auto &i: freq){
