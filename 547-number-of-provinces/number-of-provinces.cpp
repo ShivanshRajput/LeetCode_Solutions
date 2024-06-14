@@ -10,6 +10,8 @@ public:
     }
 
     int findCircleNum(vector<vector<int>>& isConnected) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL); cout.tie(NULL);
         vector<bool> visited(isConnected.size(),false);
         int cnt = 0;
         for(int i=0;i<visited.size();i++){
