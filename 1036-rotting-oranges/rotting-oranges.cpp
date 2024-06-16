@@ -22,19 +22,19 @@ public:
             while(k--){
                 int i = q.front().first;
                 int j = q.front().second;
-                if(i>0 and grid[i-1][j]==1){
+                if(i>0 && grid[i-1][j]==1){
                     q.push({i-1,j});
                     grid[i-1][j] = 2;
                 }   
-                if(i<n-1 and grid[i+1][j]==1){
+                if(i<n-1 && grid[i+1][j]==1){
                     q.push({i+1,j});
                     grid[i+1][j] = 2;
                 } 
-                if(j>0 and grid[i][j-1]==1){
+                if(j>0 && grid[i][j-1]==1){
                     q.push({i,j-1});
                     grid[i][j-1] = 2;
                 }   
-                if(j<m-1 and grid[i][j+1]==1){
+                if(j<m-1 && grid[i][j+1]==1){
                     q.push({i,j+1});
                     grid[i][j+1] = 2;
                 }
