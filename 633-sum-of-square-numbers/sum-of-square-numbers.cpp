@@ -1,17 +1,13 @@
 class Solution {
 public:
-    bool isPerfectSquare(long long n){
-        if (ceil((double)sqrt(n)) == floor((double)sqrt(n))) {
-            return true;
-        }
-        return false;
-    }
-
     bool judgeSquareSum(int c) {
-        if(c==0) return true;
-        for(long long i=1;i*i<=c;i++){
-            long long j = c - i*i;
-            if(isPerfectSquare(j)) return true;
+        long long i=1 , j=sqrt(c);
+        if(j*j == c) return true;
+        while(i<=j){
+            long long sum = i*i + j*j ;
+            if(sum == c) return true;
+            else if(sum < c) i++;
+            else j--;
         }
         return false;
     }
