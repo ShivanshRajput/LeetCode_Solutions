@@ -1,10 +1,11 @@
 class Solution {
 public:
     bool judgeSquareSum(int c) {
-        long long i=1 , j=sqrt(c);
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+        int_fast64_t i=1 , j=sqrt(c);
         if(j*j == c) return true;
         while(i<=j){
-            long long sum = i*i + j*j ;
+            int_fast64_t sum = i*i + j*j ;
             if(sum == c) return true;
             else if(sum < c) i++;
             else j--;
