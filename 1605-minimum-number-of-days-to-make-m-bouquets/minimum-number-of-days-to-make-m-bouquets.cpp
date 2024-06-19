@@ -8,17 +8,14 @@ public:
                 count++;
                 i++;
             }
-
             if (count == k) {
                 total++;
                 i--;
             }
-
             if (total >= m) {
                 return true;
             }
         }
-
         return false;
     }
 
