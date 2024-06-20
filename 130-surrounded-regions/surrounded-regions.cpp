@@ -12,7 +12,6 @@ public:
     void solve(vector<vector<char>>& board) {
         int n = board.size();
         int m = board[0].size();
-        queue<pair<int,int>>q;
         for (int j=0;j<m;j++){
             if(board[0][j]=='O') dfs(0,j,board);
             if(board[n-1][j]=='O') dfs(n-1,j,board);
