@@ -1,25 +1,49 @@
 class Solution {
-private:
-    void dfs(int i,int j,vector<vector<int>>& grid){
-        grid[i][j] = 0;
-        if(i>0 && grid[i-1][j]==1) dfs(i-1,j,grid);
-        if(j>0 && grid[i][j-1]==1) dfs(i,j-1,grid);
-        if(i<grid.size()-1 && grid[i+1][j]==1) dfs(i+1,j,grid);
-        if(j<grid[0].size()-1 && grid[i][j+1]==1) dfs(i,j+1,grid);
-    }
-
 public:
     int numEnclaves(vector<vector<int>>& grid) {
-        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         int n = grid.size();
         int m = grid[0].size();
+        queue<pair<int,int>>q;
         for (int j=0;j<m;j++){
-            if(grid[0][j]==1) dfs(0,j,grid);
-            if(grid[n-1][j]==1) dfs(n-1,j,grid);
+            if(grid[0][j]==1){
+                q.push({0,j}); 
+                grid[0][j] = 0;
+            } 
+            if(grid[n-1][j]==1){
+                q.push({n-1,j}); 
+                grid[n-1][j] = 0;
+            } 
         }
         for (int i=1;i<n-1;i++){
-            if(grid[i][0]==1) dfs(i,0,grid);
-            if(grid[i][m-1]==1) dfs(i,m-1,grid);
+            if(grid[i][0]==1){
+                q.push({i,0}); 
+                grid[i][0] = 0;
+            } 
+            if(grid[i][m-1]==1){
+                q.push({i,m-1}); 
+                grid[i][m-1] = 0;
+            } 
+        }
+        while(!q.empty()){
+            int i = q.front().first;
+            int j = q.front().second;
+            if(i>0 && grid[i-1][j]==1){
+                q.push({i-1,j}); 
+                grid[i-1][j] = 0;
+            } 
+            if(j>0 && grid[i][j-1]==1){
+                q.push({i,j-1}); 
+                grid[i][j-1] = 0;
+            } 
+            if(i<grid.size()-1 && grid[i+1][j]==1){
+                q.push({i+1,j}); 
+                grid[i+1][j] = 0;
+            } 
+            if(j<grid[0].size()-1 && grid[i][j+1]==1){
+                q.push({i,j+1}); 
+                grid[i][j+1] = 0;
+            } 
+            q.pop();
         }
         int cnt=0;
         for(int i=0;i<n;i++){
