@@ -1,6 +1,7 @@
 class Solution {
 public:
     void solve(vector<vector<char>>& board) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         int n = board.size();
         int m = board[0].size();
         queue<pair<int,int>>q;
