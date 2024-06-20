@@ -1,6 +1,7 @@
 class Solution {
 public:
     vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         vector<vector<int>> ans (mat.size(),vector<int>(mat[0].size() , -1));
         vector<vector<bool>> visited (mat.size(),vector<bool>(mat[0].size() , false));
         queue<pair<pair<int,int>,int>> q;
