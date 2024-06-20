@@ -1,27 +1,25 @@
 class Solution {
+private:
+    void dfs(int i,int j,vector<vector<char>>& board){
+        board[i][j] = 'T';
+        if(i>0 && board[i-1][j]=='O') dfs(i-1,j,board);
+        if(j>0 && board[i][j-1]=='O') dfs(i,j-1,board);
+        if(i<board.size()-1 && board[i+1][j]=='O') dfs(i+1,j,board);
+        if(j<board[0].size()-1 && board[i][j+1]=='O') dfs(i,j+1,board);
+    }
+
 public:
     void solve(vector<vector<char>>& board) {
-        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         int n = board.size();
         int m = board[0].size();
         queue<pair<int,int>>q;
         for (int j=0;j<m;j++){
-            if(board[0][j]=='O') q.push({0,j});
-            if(board[n-1][j]=='O') q.push({n-1,j});
+            if(board[0][j]=='O') dfs(0,j,board);
+            if(board[n-1][j]=='O') dfs(n-1,j,board);
         }
         for (int i=1;i<n-1;i++){
-            if(board[i][0]=='O') q.push({i,0});
-            if(board[i][m-1]=='O') q.push({i,m-1});
-        }
-        while(!q.empty()){
-            int i = q.front().first;
-            int j = q.front().second;
-            board[i][j] = 'T';
-            if(i>0 && board[i-1][j]=='O') q.push({i-1,j});
-            if(j>0 && board[i][j-1]=='O') q.push({i,j-1});
-            if(i<n-1 && board[i+1][j]=='O') q.push({i+1,j});
-            if(j<m-1 && board[i][j+1]=='O') q.push({i,j+1});
-            q.pop();
+            if(board[i][0]=='O') dfs(i,0,board);
+            if(board[i][m-1]=='O') dfs(i,m-1,board);
         }
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
