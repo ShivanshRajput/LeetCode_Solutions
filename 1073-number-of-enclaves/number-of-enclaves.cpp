@@ -10,6 +10,7 @@ private:
 
 public:
     int numEnclaves(vector<vector<int>>& grid) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         int n = grid.size();
         int m = grid[0].size();
         for (int j=0;j<m;j++){
