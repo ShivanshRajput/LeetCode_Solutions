@@ -1,41 +1,35 @@
 class Solution {
 public:
-    bool dfs(int node , vector<vector<int>>& graph , vector<bool>&safe , vector<bool>&path , vector<bool>&visited){
-        visited[node] = true;
-        path[node] = true;
-        safe[node] = true;
-        for(int & it:graph[node]){
-            if(!visited[it]){
-                if(dfs(it,graph,safe,path,visited)==false){
-                    safe[node] = false;
-                    return false;
-                }
-            }
-            else if(path[it]){
-                safe[node] = false;
-                return false;
-            }
-            
-        }
-        path[node] = false;
-        return true;
-    }
     vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+        // usning kahn's algorithm
         int n = graph.size();
-        vector<bool>safe(n,false);
-        vector<bool>path(n,false);
-        vector<bool>visited(n,false);
+        vector<vector<int>>adj(n);
+        vector<int>indegree(n);
         for(int i=0;i<n;i++){
-            if(!visited[i]){
-                dfs(i,graph,safe,path,visited);
+            for(int &j:graph[i]){
+                adj[j].push_back(i);
+                indegree[i]++;
+            }
+        }
+        queue<int>q;
+        for(int i=0;i<n;i++){
+            if(indegree[i]==0){
+                q.push(i);
             }
         }
         vector<int>ans;
-        for(int i=0;i<n;i++){
-            if(safe[i]){
-                ans.push_back(i);
+        while(!q.empty()){
+            int node = q.front();
+            for(int &i:adj[node]){
+                indegree[i]--;
+                if(indegree[i]==0){
+                    q.push(i);
+                }
             }
+            ans.push_back(node);
+            q.pop();
         }
+        sort(ans.begin(),ans.end());
         return ans;
     }
 };
