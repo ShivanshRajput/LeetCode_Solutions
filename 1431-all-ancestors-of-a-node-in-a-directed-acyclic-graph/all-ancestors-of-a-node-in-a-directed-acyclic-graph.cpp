@@ -1,29 +1,40 @@
 class Solution {
-private:
-    void dfs(int node ,int parent, vector<bool>&visited , vector<vector<int>>&adj , vector<vector<int>>&ancestor){
-        visited[node] = true;
-        for(int &i:adj[node]){
-            if(!visited[i]){
-                ancestor[i].push_back(parent);
-                dfs(i,parent,visited,adj,ancestor);
-            }
-        }
-    }
 public:
     vector<vector<int>> getAncestors(int n, vector<vector<int>>& edges) {
+        // calculation of adjacency matrix and indegrees for topological sort by kahn algirithm
         vector<vector<int>> adj(n);
+        vector<int>indegree(n,0);
         for(auto &it:edges){
             adj[it[0]].push_back(it[1]);
+            indegree[it[1]]++;
         }
-        
-        vector<vector<int>> ancestor(n);
+        // identifying starting nodes
+        queue<int>q;
         for(int i=0;i<n;i++){
-            vector<bool>visited(n,false);
-            dfs(i,i,visited,adj,ancestor);
+            if(indegree[i]==0){
+                q.push(i);
+            }
         }
+        // marking ancestors
+        vector<set<int>> ancestors(n);
+        while(!q.empty()){
+            int node = q.front();
+            for(int &i:adj[node]){
+                ancestors[i].insert(node);
+                for(int a: ancestors[node]){
+                    ancestors[i].insert(a);
+                }
+                indegree[i]--;
+                if(indegree[i]==0){
+                    q.push(i);
+                }
+            }
+            q.pop();
+        }
+        vector<vector<int>>ans(n);
         for(int i=0;i<n;i++){
-            sort(ancestor[i].begin() , ancestor[i].end());
+            ans[i] = vector<int>(ancestors[i].begin() , ancestors[i].end());
         }
-        return ancestor;
+        return ans;
     }
 };
