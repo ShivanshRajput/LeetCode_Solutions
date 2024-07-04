@@ -11,19 +11,19 @@
 class Solution {
 public:
     ListNode* mergeNodes(ListNode* head) {
-        ListNode *newHead = new ListNode();
-        ListNode *prev = newHead;
-        ListNode * trav = head->next;
-        while(trav->next){
-            if(trav->val != 0){
-                prev->val += trav->val;
+        ListNode * modify = head->next;
+        ListNode * trav = modify;
+        while(trav){
+            int sum = 0;
+            while(trav->val != 0){
+                sum+=trav->val;
+                trav = trav->next;
             }
-            else{
-                prev->next = new ListNode();
-                prev = prev->next;
-            }
+            modify->val = sum;
+            modify->next = trav->next;
+            modify = modify->next;
             trav = trav->next;
         }
-        return newHead;
+        return head->next;
     }
 };
