@@ -1,11 +1,12 @@
 class Solution {
 public:
     double averageWaitingTime(vector<vector<int>>& customers) {
-        long long prev = 0;
-        long long tot = 0;
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL); 
+        uint_fast64_t prev = 0;
+        uint_fast64_t tot = 0;
         for(auto & it : customers){
-            long long in = it[0];
-            long long tm = it[1];
+            uint_fast64_t in = it[0];
+            uint_fast64_t tm = it[1];
             if(prev>in){
                 tm += prev - in;
             }
