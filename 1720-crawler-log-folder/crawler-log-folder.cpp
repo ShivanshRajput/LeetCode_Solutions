@@ -1,20 +1,20 @@
 class Solution {
 public:
     int minOperations(vector<string>& logs) {
-        stack<int>path;
+        int count = 0;
         for(string &s:logs){
             if(s=="../"){
-                if(!path.empty()){
-                    path.pop();
+                if(count>0){
+                    count--;
                 }
             }
             else if(s=="./"){
                 continue;
             }
             else{
-                path.push(1);
+                count++;
             }
         }
-        return path.size();
+        return count;
     }
 };
