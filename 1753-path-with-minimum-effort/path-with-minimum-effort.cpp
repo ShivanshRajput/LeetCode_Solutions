@@ -1,6 +1,7 @@
 class Solution {
 public:
     int minimumEffortPath(vector<vector<int>>& heights) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         int n = heights.size();
         int m = heights[0].size();
         vector<vector<int>> effort(n , vector<int>(m,1e9));
@@ -14,7 +15,6 @@ public:
             int c = pq.top().second.second; 
             int eff = pq.top().first;
             pq.pop();
-            // cout<<eff<<" "<<r<<" "<<c<<endl;
             for(int k=0;k<4;k++){
                 int i = r + dr[k];
                 int j = c + dc[k];
@@ -22,19 +22,11 @@ public:
                     int mxeff = max(effort[r][c] , abs(heights[i][j] - heights[r][c]));
                     if(mxeff<effort[i][j]){
                         effort[i][j] = mxeff;
-                        // cout<<mxeff<<" "<<i<<" "<<j<<endl;
                         pq.push({mxeff , {i,j}});
                     }
                 }
             }
-            
         }
-        // for(int i=0;i<n;i++){
-        //     for(int j=0;j<m;j++){
-        //         cout<<effort[i][j]<<" ";
-        //     }
-        //     cout<<endl;
-        // }
         return effort[n-1][m-1];
     }
 };
