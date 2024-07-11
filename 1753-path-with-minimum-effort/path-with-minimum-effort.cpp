@@ -14,6 +14,7 @@ public:
             int r = pq.top().second.first;
             int c = pq.top().second.second; 
             int eff = pq.top().first;
+            if(r==n-1 && c==m-1) return eff;
             pq.pop();
             for(int k=0;k<4;k++){
                 int i = r + dr[k];
@@ -27,6 +28,6 @@ public:
                 }
             }
         }
-        return effort[n-1][m-1];
+        return 0;
     }
 };
