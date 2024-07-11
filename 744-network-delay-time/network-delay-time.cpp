@@ -1,6 +1,7 @@
 class Solution {
 public:
     int networkDelayTime(vector<vector<int>>& times, int n, int k) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         vector<pair<int,int>> adj[n+1];
         for(auto&it:times){
             adj[it[0]].push_back({it[1],it[2]});
