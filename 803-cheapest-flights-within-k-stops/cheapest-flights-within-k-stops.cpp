@@ -1,6 +1,7 @@
 class Solution {
 public:
     int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         vector<pair<int,int>> adj[n];
         for(auto&it:flights){
             adj[it[0]].push_back({it[1],it[2]});
