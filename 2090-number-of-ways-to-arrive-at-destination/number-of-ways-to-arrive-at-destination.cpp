@@ -1,6 +1,7 @@
 class Solution {
 public:
     int countPaths(int n, vector<vector<int>>& roads) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         long long mod = 1e9 + 7 ;
         vector<pair<int,int>>adj[n];
         for(auto &it : roads){
