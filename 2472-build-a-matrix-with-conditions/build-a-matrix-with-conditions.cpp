@@ -36,19 +36,19 @@ private:
 
 public:
     vector<vector<int>> buildMatrix(int k, vector<vector<int>>& rowConditions, vector<vector<int>>& colConditions) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         vector<int> rowSequence = findSequence(rowConditions , k);
         vector<int> colSequence = findSequence(colConditions , k);
         if(rowSequence.empty() || colSequence.empty()){
             return {};
         }
-        unordered_map<int, int> colPos;
-        for (int i = 0; i < k; ++i) {
-            colPos[colSequence[i]] = i;
-        }
-        vector<vector<int>> ans(k, vector<int>(k, 0));
-        for (int i = 0; i < k; ++i) {
-            int val = rowSequence[i];
-            ans[i][colPos[val]] = val;
+        vector<vector<int>>ans(k,vector<int>(k,0));
+        for(int i=0;i<k;i++){
+            for(int j=0;j<k;j++){
+                if(rowSequence[i] == colSequence[j]){
+                    ans[i][j] = rowSequence[i];
+                }
+            }
         }
         return ans;
     }
