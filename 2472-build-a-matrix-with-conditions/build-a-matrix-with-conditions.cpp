@@ -41,13 +41,14 @@ public:
         if(rowSequence.empty() || colSequence.empty()){
             return {};
         }
-        vector<vector<int>>ans(k,vector<int>(k,0));
-        for(int i=0;i<k;i++){
-            for(int j=0;j<k;j++){
-                if(rowSequence[i] == colSequence[j]){
-                    ans[i][j] = rowSequence[i];
-                }
-            }
+        unordered_map<int, int> colPos;
+        for (int i = 0; i < k; ++i) {
+            colPos[colSequence[i]] = i;
+        }
+        vector<vector<int>> ans(k, vector<int>(k, 0));
+        for (int i = 0; i < k; ++i) {
+            int val = rowSequence[i];
+            ans[i][colPos[val]] = val;
         }
         return ans;
     }
