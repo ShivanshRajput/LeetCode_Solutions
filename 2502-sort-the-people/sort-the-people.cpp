@@ -2,15 +2,14 @@ class Solution {
 public:
     vector<string> sortPeople(vector<string>& names, vector<int>& heights) {
         int n = names.size();
-        vector<pair<int,string>> v;
         for(int i=0;i<n;i++){
-            v.push_back({heights[i] , names[i]});
+            for(int j=0;j<n-i-1;j++){
+                if(heights[j]<heights[j+1]){
+                    swap(heights[j] , heights[j+1]);
+                    swap(names[j] , names[j+1]);
+                }
+            }
         }
-        sort(v.begin() , v.end() , greater<pair<int,string>>());
-        vector<string> ans;
-        for(auto &it : v){
-            ans.push_back(it.second);
-        }
-        return ans;
+        return names;
     }
 };
