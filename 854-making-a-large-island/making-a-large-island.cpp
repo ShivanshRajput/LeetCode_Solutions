@@ -36,6 +36,7 @@ private:
     }
 public:
     int largestIsland(vector<vector<int>>& grid) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         int n = grid.size();
         DisjointSet ds(n*n);
         int dr[] = { -1, 0, 1, 0};
