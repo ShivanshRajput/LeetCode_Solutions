@@ -83,12 +83,7 @@ public:
         }
 
         // Step 3: Consider the case when no flip is needed (i.e., the entire grid is already 1s)
-        for(int cellNo = 0; cellNo < n * n; cellNo++) {
-            if (grid[cellNo / n][cellNo % n] == 1) {
-                maxSize = max(maxSize, ds.size[ds.findUPar(cellNo)]);
-            }
-        }
-
+        maxSize = max(maxSize, ds.size[ds.findUPar(0)]);
         return maxSize;
     }
 };
