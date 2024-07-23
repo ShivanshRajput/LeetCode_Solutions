@@ -1,11 +1,12 @@
 class Solution {
 public:
     vector<int> frequencySort(vector<int>& nums) {
-        int freq[201] = {};
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+        int_fast16_t freq[201] = {};
         for(int &i:nums){
             freq[i+100]++;
         }
-        sort(nums.begin() , nums.end() , [&](int a, int b){
+        sort(nums.begin() , nums.end() , [&](int_fast16_t a, int_fast16_t b){
             if(freq[a+100] == freq[b+100]){
                 return a>b;
             }
