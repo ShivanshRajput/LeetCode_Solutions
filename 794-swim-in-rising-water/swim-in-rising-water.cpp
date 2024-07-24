@@ -1,3 +1,53 @@
+class DisjointSet {
+    vector<int> rank, parent, size; 
+public:
+    DisjointSet(int n) {
+        rank.resize(n+1, 0); 
+        parent.resize(n+1);
+        size.resize(n+1); 
+        for(int i = 0;i<=n;i++) {
+            parent[i] = i; 
+            size[i] = 1;
+        }
+    }
+
+    int findUPar(int node) {
+        if(node == parent[node])
+            return node; 
+        return parent[node] = findUPar(parent[node]); 
+    }
+
+    void unionByRank(int u, int v) {
+        int ulp_u = findUPar(u); 
+        int ulp_v = findUPar(v); 
+        if(ulp_u == ulp_v) return; 
+        if(rank[ulp_u] < rank[ulp_v]) {
+            parent[ulp_u] = ulp_v; 
+        }
+        else if(rank[ulp_v] < rank[ulp_u]) {
+            parent[ulp_v] = ulp_u; 
+        }
+        else {
+            parent[ulp_v] = ulp_u; 
+            rank[ulp_u]++; 
+        }
+    }
+
+    void unionBySize(int u, int v) {
+        int ulp_u = findUPar(u); 
+        int ulp_v = findUPar(v); 
+        if(ulp_u == ulp_v) return; 
+        if(size[ulp_u] < size[ulp_v]) {
+            parent[ulp_u] = ulp_v; 
+            size[ulp_v] += size[ulp_u]; 
+        }
+        else {
+            parent[ulp_v] = ulp_u;
+            size[ulp_u] += size[ulp_v]; 
+        }
+    }
+};
+
 class Solution {
 private:
     bool isValid(int i,int j,int n, int m){
@@ -5,33 +55,34 @@ private:
     }
 public:
     int swimInWater(vector<vector<int>>& grid) {
-        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         int n = grid.size();
-        int m = grid[0].size();
-        vector<vector<int>> time(n , vector<int>(m,1e9));
-        priority_queue<pair<int,pair<int,int>> , vector<pair<int,pair<int,int>>> , greater<pair<int,pair<int,int>>>> pq;
-        pq.push({grid[0][0],{0,0}});
-        time[0][0] = grid[0][0];
-        int dr[4] = {-1,0,1,0};
-        int dc[4] = { 0,1,0,-1};
-        while(!pq.empty()){
-            int curr_time = pq.top().first;
-            int curr_row = pq.top().second.first;
-            int curr_col = pq.top().second.second;
-            pq.pop();
-            if(curr_row==n-1 && curr_col==m-1) return curr_time;
-            for(int ind=0;ind<4;ind++){
-                int adj_row = curr_row + dr[ind];
-                int adj_col = curr_col + dc[ind];
-                if(isValid(adj_row,adj_col,n,m)){
-                    int alter_time = max(time[curr_row][curr_col] , grid[adj_row][adj_col]);
-                    if(alter_time < time[adj_row][adj_col]){
-                        time[adj_row][adj_col] = alter_time;
-                        pq.push({alter_time , {adj_row,adj_col}});
-                    }
-                }
+        vector<pair<int,int>> heightOfWater(n*n);
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                heightOfWater[grid[i][j]] = {i,j};
             }
         }
-        return 0;
+        vector<vector<bool>> visited (n,vector<bool>(n,false));
+        DisjointSet ds(n*n);
+        int dr[4] = {-1,0,1,0};
+        int dc[4] = { 0,1,0,-1};
+        for(int time=0;time<n*n;time++){
+            int x = heightOfWater[time].first;
+            int y = heightOfWater[time].second;
+            visited[x][y] = true;
+            for(int ind=0;ind<4;ind++){
+                int adjx = x + dr[ind];
+                int adjy = y + dc[ind];
+                if(isValid(adjx, adjy , n , n) && visited[adjx][adjy]){
+                    int nodeNo = x*n + y;
+                    int adjNodeNo = adjx*n + adjy;
+                    ds.unionByRank(nodeNo, adjNodeNo);
+                }
+            }
+            if(ds.findUPar(0) == ds.findUPar(n*n-1)){
+                return time;
+            }
+        }
+        return n*n-1;
     }
 };
