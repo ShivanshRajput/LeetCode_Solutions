@@ -59,6 +59,7 @@ public:
 class Solution {
 public:
     int removeStones(vector<vector<int>>& stones) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         int noOfStones = stones.size();
         int rows = 0, cols = 0;
         for(auto &it : stones){
@@ -71,6 +72,6 @@ public:
             int yNo = it[1] + rows + 1;
             ds.unionBySize(xNo , yNo);
         }
-        return noOfStones - ds.noOfComponents(); // because of one last index being alone and always connected to itself in disjointSet it will increase the count of components in 0 based indexing. so a +1 in subtraced answer.
+        return noOfStones - ds.noOfComponents();
     }
 };
