@@ -5,6 +5,7 @@ private:
     }
 public:
     int swimInWater(vector<vector<int>>& grid) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         int n = grid.size();
         int m = grid[0].size();
         vector<vector<int>> time(n , vector<int>(m,1e9));
