@@ -1,6 +1,7 @@
 class Solution {
 public:
     int minSwaps(vector<int>& nums) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         int n = nums.size();
         int countOnes = accumulate(nums.begin() , nums.end() , 0);
         if(countOnes<=1) return 0;
