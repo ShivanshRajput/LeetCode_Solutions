@@ -1,6 +1,7 @@
 class Solution {
 public:
     int minimumPushes(string word) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         int freq[26] = {0};
         for(char &c: word){
             freq[c-'a']++;
