@@ -1,6 +1,7 @@
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         int n = nums.size();
         vector<vector<int>> ans;
         for(int i=0;i<(1<<n);i++){
