@@ -1,15 +1,20 @@
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        unordered_map<int,int> freq;
-        for(int &i: nums){
-            freq[i]++;
-        }
-        for(auto &it: freq){
-            if(freq[it.first]==1){
-                return it.first;
+        vector<int>setBits(32,0);
+        for(int &i:nums){
+            for(int j=0;j<32;j++){
+                if(i&(1<<j)){
+                    setBits[j]++;
+                }
             }
         }
-        return -1;
+        int ans = 0;
+        for(int i=0;i<32;i++){
+            if(setBits[i]%3==1){
+                ans|=(1<<i);
+            }
+        }
+        return ans;
     }
 };
