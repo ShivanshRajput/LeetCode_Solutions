@@ -16,6 +16,7 @@ private:
 
 public:
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         sort(candidates.begin() , candidates.end());
         vector<vector<int>> ans;
         vector<int> list;
