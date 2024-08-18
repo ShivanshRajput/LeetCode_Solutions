@@ -1,6 +1,7 @@
 class Solution {
 public:
     int nthUglyNumber(int n) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         int indA = 0 , indB = 0 , indC = 0;
         int uglyNo[n];
         uglyNo[0] = 1;
