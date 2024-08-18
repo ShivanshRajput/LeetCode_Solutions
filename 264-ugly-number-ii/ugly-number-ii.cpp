@@ -1,24 +1,19 @@
 class Solution {
 public:
     int nthUglyNumber(int n) {
-        vector<int> primes = {2,3,5};
-        priority_queue<long, vector<long> , greater<long>> minHeap;
-        unordered_set<long> visited;
-
-        minHeap.push(1);
-        visited.insert(1);
-        long no;
-        for(int i = 0;i<n;i++){
-            no = minHeap.top();
-            minHeap.pop();
-            for(int &x: primes){
-                long newNo = no*x;
-                if(visited.find(newNo) == visited.end()){
-                    minHeap.push(newNo);
-                    visited.insert(newNo);
-                }
-            }
+        int indA = 0 , indB = 0 , indC = 0;
+        int uglyNo[n];
+        uglyNo[0] = 1;
+        for(int i=1;i<n;i++){
+            int newA = uglyNo[indA] * 2;
+            int newB = uglyNo[indB] * 3;
+            int newC = uglyNo[indC] * 5;
+            int mini = min({newA , newB , newC});
+            if(mini == newA) indA++;
+            if(mini == newB) indB++;
+            if(mini == newC) indC++;
+            uglyNo[i] = mini;
         }
-        return (int)no;
+        return uglyNo[n-1];
     }
 };
