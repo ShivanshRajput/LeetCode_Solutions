@@ -10,7 +10,7 @@ public:
                 }
             }
         }
-        int_fast32_t count = 0;
+        int count = 0;
         for(int_fast32_t i=2;i<n;i++){
             if(!sieve[i]) count++;
         }
