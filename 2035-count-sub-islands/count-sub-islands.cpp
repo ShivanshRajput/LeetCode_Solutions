@@ -52,6 +52,7 @@ public:
 class Solution {
 public:
     int countSubIslands(vector<vector<int>>& grid1, vector<vector<int>>& grid2) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         int n = grid1.size();
         int m = grid1[0].size();
         DisjointSet ds(n*m);
