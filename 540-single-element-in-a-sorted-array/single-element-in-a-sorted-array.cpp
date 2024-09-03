@@ -1,6 +1,7 @@
 class Solution {
 public:
     int singleNonDuplicate(vector<int>& arr) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         int n = arr.size();
         if(n==1)
             return arr[0];
