@@ -1,6 +1,7 @@
 class Solution {
 public:
     int robotSim(vector<int>& commands, vector<vector<int>>& obstacles) {
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
         set<pair<int,int>> obs ; 
         for(auto &it : obstacles){
             obs.insert({it[0] , it[1]});
