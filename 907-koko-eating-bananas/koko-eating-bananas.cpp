@@ -1,38 +1,29 @@
 class Solution {
-public:
-
-    long long calculatehours(vector<int>& piles,int mid)
-    {
-        long long time=0;
-        for(int i=0;i<piles.size();i++)
-        {
-            if((piles[i]%mid)!=0)
-            time=time+(piles[i]/mid)+1;
-            else
-            time=time+(piles[i]/mid);
+private:
+    long long timeTaken(int speed , vector<int>&piles){
+        long long time = 0;
+        for(int &bananas:piles){
+            time += (bananas/speed) + (bananas%speed != 0);
         }
         return time;
     }
 
+public:
     int minEatingSpeed(vector<int>& piles, int h) {
-        int maxi=INT_MIN;
-        for(int i=0;i<piles.size();i++)
-        {
-            maxi=max(maxi,piles[i]);
-        }
-        int low=1,high=maxi;;
-        while(low<=high)
-        {
-            int mid=(low+high)/2;
-            if(calculatehours(piles,mid)<=h)
-            {
-                high=mid-1;
+        ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+        int highSpeed = *max_element(piles.begin() , piles.end());
+        int lowSpeed = 1;
+        int minimumSpeed = INT_MAX;
+        while(lowSpeed<=highSpeed){
+            int midSpeed = lowSpeed + (highSpeed - lowSpeed)/2;
+            if(timeTaken(midSpeed , piles) <= h){
+                minimumSpeed = midSpeed;
+                highSpeed = midSpeed - 1;
             }
-            else 
-            {
-                low=mid+1;
+            else{
+                lowSpeed = midSpeed + 1;
             }
         }
-        return low;
+        return minimumSpeed;
     }
 };
