@@ -11,7 +11,6 @@
 class Solution {
 public:
     vector<ListNode*> splitListToParts(ListNode* head, int k) {
-        ios_base::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
         vector<ListNode*> ans(k, nullptr);
         int totalLength = 0;
         ListNode* temp = head;
