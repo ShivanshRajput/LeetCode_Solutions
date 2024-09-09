@@ -16,34 +16,25 @@ public:
         int left = 0 , right = n-1 , up = 0 , down = m-1;
         ListNode * temp = head;
         while(left<=right && up<=down){
-            if(temp==nullptr) break;
-            for(int i=left;i<=right;i++){
+            for(int i=left;i<=right && temp;i++){
                 ans[up][i] = temp->val;
                 temp = temp->next;
-                if(temp==nullptr) break;
             } 
-            if(temp==nullptr) break; 
             up++;
-            for(int j=up;j<=down;j++){
+            for(int j=up;j<=down && temp;j++){
                 ans[j][right] = temp->val;
                 temp = temp->next;
-                if(temp==nullptr) break;
             }    
-            if(temp==nullptr) break;
             right --;
-            for(int i=right;i>=left;i--){
+            for(int i=right;i>=left && temp;i--){
                 ans[down][i] = temp->val;
                 temp = temp->next;
-                if(temp==nullptr) break;
             }  
-            if(temp==nullptr) break;
             down--;
-            for(int j=down;j>=up;j--){
+            for(int j=down;j>=up && temp;j--){
                 ans[j][left] = temp->val;
                 temp = temp->next;
-                if(temp==nullptr) break;
             }    
-            
             left++;
         }
         return ans;
