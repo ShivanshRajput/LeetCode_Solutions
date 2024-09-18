@@ -2,16 +2,18 @@ class Solution {
 public:
     string largestNumber(vector<int>& nums) {
         ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
-        vector<string> ans;
+        int n = nums.size();
+        vector<string> arr(n);
+        int i = 0;
         for(int &it: nums){
-            ans.push_back(to_string(it));
+            arr[i++] = (to_string(it));
         }
         auto cmp = [](string &x , string &y){
             return x+y > y+x;
         };
-        sort(ans.begin() , ans.end() , cmp);
+        sort(arr.begin() , arr.end() , cmp);
         string res = "";
-        for(auto &it:ans){
+        for(auto &it:arr){
             res += it;
         }
         if(res[0] == '0') return "0";
