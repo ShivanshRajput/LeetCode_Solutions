@@ -1,15 +1,20 @@
 class MyCalendar {
 public:
-    set<pair<int,int>> events;
+    set<pair<int,int>> st;
     MyCalendar() {
         ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
     }
     
     bool book(int start, int end) {
-        for(auto &it : events){
-            if(start < it.second && end > it.first) return false;
+        pair<int,int>event{start,end};
+        auto nextEvent=st.lower_bound(event);
+        if(nextEvent!=st.end()&&nextEvent->first<end)return false;
+
+        if(nextEvent!=st.begin()){
+            auto prevEvent=prev(nextEvent);
+            if(prevEvent->second>start)return false;
         }
-        events.insert({start,end});
+        st.insert(event);
         return true;
     }
 };
