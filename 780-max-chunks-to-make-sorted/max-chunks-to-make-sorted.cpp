@@ -1,20 +1,13 @@
 class Solution {
 public:
     int maxChunksToSorted(vector<int>& arr) {
-        // using monotonic stack...
-        stack<int> mono;
-        for(int &it: arr){
-            if(mono.empty() || it > mono.top()){
-                mono.push(it);
-            }
-            else{
-                int maxYet = mono.top();
-                while(!mono.empty() && it < mono.top()){
-                    mono.pop();
-                }
-                mono.push(maxYet);
-            }
+        // using maxElement...
+        int n = arr.size();
+        int maxi = 0 , chunks = 0;
+        for(int i=0;i<n;i++){
+            maxi = max(maxi , arr[i]);
+            if(maxi == i) chunks++;
         }
-        return mono.size();
+        return chunks;
     }
 };
